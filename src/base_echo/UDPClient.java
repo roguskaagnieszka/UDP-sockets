@@ -1,3 +1,4 @@
+package base_echo;
 
 import java.net.*;
 import java.io.*;
@@ -26,11 +27,11 @@ public class UDPClient extends Thread {
         String outMessage = "Hello from the client!";
         try {
             // Here we connect wioth the server
-            mysocket.connect(hostAddress,UDPServer.INPORT);
+            mysocket.connect(hostAddress, base_echo.UDPServer.INPORT);
             if (mysocket.isConnected())
                 System.out.println("Successfully connected to " + mysocket.getRemoteSocketAddress());
             outbuf = outMessage.getBytes();
-            mysocket.send(new DatagramPacket(outbuf, outbuf.length, hostAddress, UDPServer.INPORT));
+            mysocket.send(new DatagramPacket(outbuf, outbuf.length, hostAddress, base_echo.UDPServer.INPORT));
             mysocket.receive(dp);
             String message = new String(dp.getData(), 0, dp.getLength());
             String rcvd = "Received from the address: " + dp.getAddress() + ", port: " + dp.getPort() + ": " + message;        		
